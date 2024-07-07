@@ -1,0 +1,294 @@
+<style>
+
+.intro-section{
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.search-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-input{
+  width: 300px;
+  background-color: rgb(19, 23, 42);
+  margin-right: 10px;
+  color: white;
+  border-color:rgba(255, 255, 255, 0.5) ;
+}
+
+
+.product-category{
+  width: 200px;
+}
+
+.form-control{
+  background-color: transparent;
+  color: white;
+}
+
+.form-control::placeholder{
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+}
+
+.product-item{
+  background-color: rgb(19, 23, 42);
+  border: 1px solid rgb(35, 38, 61) ;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+}
+
+.product-img{
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product-name{
+  color:white;
+}
+
+.product-name{
+  color:white;
+}
+
+.product-name  {
+  color:white;
+}
+
+.product-description{
+  color:rgb(173, 178, 203);
+}
+
+.product-warranty{
+  color:rgb(244, 126, 212);
+}
+
+.product-price {
+  color:white;
+}
+
+
+.product-rating {
+  color:gold;
+  margin-top: 10px;
+}
+
+.product-actions{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.space-x{
+  margin: 0px 6px;
+}
+
+
+</style>
+
+<app-header></app-header>
+
+<div class="container">
+  <div class="intro-section">
+    <h1>This is home</h1>
+    <p>This page displays product categoreis, image </p>
+    <p>You can choose and buy product here</p>
+  </div>
+
+  <div class="search-box">
+    <input type="text" class="form-control search-input" placeholder="Search Product">
+    <select name="" id="" class="form-control product-category" >
+      <option selected disabled>product categoreis </option>
+      <option value="">electronic</option>
+      <option value="">furniture</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" >
+      <div class="product-item">
+        <img src="https://images.pexels.com/photos/4974914/pexels-photo-4974914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-img">
+        <h3 class="product-name">Product one </h3>
+        <p class="product-description">lorem ipsum dolor sit amet, cónecteture adiposcing elit</p>
+        <p class="product-warranty">warranty: 12 month</p>
+        <p class="product-price">324</p>
+        <div class="product-rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-primary">Add cart</button>
+          <span class="space-x"></span>
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
