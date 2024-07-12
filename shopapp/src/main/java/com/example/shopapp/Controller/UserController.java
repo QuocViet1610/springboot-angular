@@ -44,10 +44,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO UserLoginDTO){
+    public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO userLoginDTO){
         try{
-
-            return new ResponseEntity<>("SecreKey", HttpStatus.OK);
+            String token = userService.Login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword());
+            return new ResponseEntity<>(token, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

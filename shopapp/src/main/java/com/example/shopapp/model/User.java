@@ -67,7 +67,7 @@ public class User extends BaseEnity implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("Role_" +getRoleId().getName())); // lấy name của object Role
+        grantedAuthorities.add(new SimpleGrantedAuthority("Role_" + getRoleId().getName())); // lấy name của object Role
         return grantedAuthorities;
     }
 

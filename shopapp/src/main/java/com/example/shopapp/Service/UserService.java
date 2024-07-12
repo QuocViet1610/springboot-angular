@@ -55,7 +55,7 @@ public class UserService implements IUserService {
 
         Role role =roleRepository.findById(userDTO.getRoleId())
                 .orElseThrow(() -> new DataNotFoundException("Role not exist"));
-
+        newUser.setRoleId(role);
         //kiểm tra nếu có account ID, không yêu cầu password
         if(userDTO.getGoogleAccountId() == 0 && userDTO.getFacebookAccountId() == 0){
             String password = userDTO.getPassword();
@@ -69,7 +69,7 @@ public class UserService implements IUserService {
     @Override
     public String Login(String numberPhone, String password) throws Exception {
         Optional<User> existingUser = userRepository.findByPhoneNumber(numberPhone);
-        if(existingUser.isEmpty()) {
+        if(!existingUser.isPresent()) {
             throw new DataNotFoundException("Invalid phone number / password");
         }
 
