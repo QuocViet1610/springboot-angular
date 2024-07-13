@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("${api.prefix}/order_detail")
+@RequestMapping("${api.prefix}/order_details")
 @RequiredArgsConstructor
 public class OrderDetailController {
 

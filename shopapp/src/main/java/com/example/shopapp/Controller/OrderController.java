@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("${api.prefix}/order")
+@RequestMapping("${api.prefix}/orders")
 @RequiredArgsConstructor
 public class OrderController {
 

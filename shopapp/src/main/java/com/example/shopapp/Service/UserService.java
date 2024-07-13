@@ -86,6 +86,7 @@ public class UserService implements IUserService {
                 numberPhone, password,
                 existingUser.get().getAuthorities()
         );
+
         authenticationManager.authenticate(authenticationToken);
 
 

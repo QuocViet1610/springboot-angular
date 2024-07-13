@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("${api.prefix}/product")
+@RequestMapping("${api.prefix}/products")
 public class ProductController {
 
     private final IProductService productService;
