@@ -10,30 +10,38 @@ import { OrderConfirmComponent } from './components/order-confirm/order-confirm.
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DetailProductComponent } from './components/detail-product/detail-product.component';
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    FooterComponent,
-    HeaderComponent,
-    OrderComponent,
-    OrderConfirmComponent,
-    LoginComponent,
-    RegisterComponent,
-    DetailProductComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [
-    // AppComponent,
-    // OrderComponent,
-    // OrderConfirmComponent
-    // LoginComponent
-    // RegisterComponent
-    DetailProductComponent
-  ],
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-})
+
+  @NgModule({
+    declarations: [
+      AppComponent,
+      HomeComponent,
+      FooterComponent,
+      HeaderComponent,
+      OrderComponent,
+      OrderConfirmComponent,
+      LoginComponent,
+      RegisterComponent,
+      DetailProductComponent,
+
+    ],
+    imports: [
+      BrowserModule,
+      FormsModule,
+      HttpClientModule
+    ],
+    providers: [],
+    bootstrap: [
+      // AppComponent,
+      // OrderComponent,
+      // OrderConfirmComponent
+      LoginComponent
+      // RegisterComponent
+      // DetailProductComponent
+
+    ],
+
+  })
 export class AppModule { }

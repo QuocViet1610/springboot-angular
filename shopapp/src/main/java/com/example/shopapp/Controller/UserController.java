@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.shopapp.dtos.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("${api.prefix}/User")
@@ -33,11 +34,12 @@ public class UserController {
                 return new ResponseEntity<>(messageError, HttpStatus.BAD_REQUEST);
             }
             if(!userDTO.getPassword().equals(userDTO.getRetypePassword())){
-                return new ResponseEntity<>("Password does not match", HttpStatus.OK);
+                return new ResponseEntity<>("Password does not match", HttpStatus.BAD_REQUEST);
 
             }
             User user= userService.createUser(userDTO);
-            return new ResponseEntity<>("create user is success",HttpStatus.OK);
+            return new ResponseEntity<>(Map.of("message", "create user is success"), HttpStatus.OK);
+
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

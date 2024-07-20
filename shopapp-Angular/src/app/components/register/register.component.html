@@ -1,36 +1,87 @@
 <app-header></app-header>
 <div class="container">
+  <form #registerForm="ngForm">
   <div class="row">
     <div class="col-md-6 offset-md-3">
 
       <div class="login-form mx-auto">
         <h2 class="login-header">Register</h2>
         <div class="form-group">
-          <label for="eamil">Email/Phone</label>
-          <input type="text" class="form-control" id="email">
+          <label for="phone">Phone</label>
+          <input type="text" class="form-control"
+          [(ngModel)]="phoneNumber"
+          (input)="onPhoneChange()"
+          id="phoneNumber"
+          name="phone"
+          (focus)="registerForm.form.markAsTouched()"
+         required>
           <div class="divider-nospace"></div>
+          <div *ngIf="phoneNumber.length < 6 && registerForm.form.touched">
+            <p  style="color: rgba(255, 255, 255, 0.192);">
+              Phone phải có ít nhất 6 ký tự</p>
+          </div>
         </div>
 
         <div class="space-input"></div>
         <div class="form-group password-field">
           <label for="password">Password</label>
-          <input type="password" placeholder="Enter at least 3 characters" class="form-control" id="password">
+          <input  [(ngModel)]="password" type="password"
+           placeholder="Enter at least 3 characters" class="form-control" id="password" name="password"
+             (focus)="registerForm.form.markAsTouched()"
+           required >
             <i class="password-toggle fas fa-eye-slash"></i>
             <div class="divider-nospace"></div>
+            <div *ngIf="password.length < 3 && registerForm.form.touched">
+
+              <p  style="color: rgba(255, 255, 255, 0.192);">
+                  Mật khẩu phải có ít nhất 3 ký tự
+              </p>
+         </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="space-input"></div>
+        <div class="form-group password-field">
+          <label for="confirm-password">Enter Password again</label>
+          <input [(ngModel)]="retypePassword" type="password" placeholder="Enter at least 3 characters"
+                 class="form-control" id="password-again" name="confirmPassword" required>
+          <i class="password-toggle fas fa-eye-slash"></i>
+          <div class="divider-nospace"></div>
+          <div *ngIf="chekcMatchRetypePassword">
+            <p class="text-danger">
+              Mật khẩu không khớp
+            </p>
+          </div>
         </div>
 
         <div class="space-input"></div>
-        <div class="form-group password-field">
-          <label for="password">Ender Password again</label>
-          <input type="password" placeholder="Enter at least 3 characters" class="form-control" id="password-again">
-            <i class="password-toggle fas fa-eye-slash"></i>
-            <div class="divider-nospace"></div>
+        <div class="form-group">
+          <label for="date-of-birth">Ngày tháng năm sinh</label>
+          <!-- Thêm [(ngModel)] để thực hiện 2-way data binding -->
+          <input type="date"
+              class="form-control"
+                  required
+                  id="date-of-birth"
+                  [(ngModel)]="dateOfBirth"
+                  name="dateOfBirth"
+                  (input)="registerForm.form.markAsTouched(); checkAge()"
+                 >
+                 <div *ngIf="registerForm.controls['dateOfBirth'].hasError('invalidAge')
+                 && registerForm.form.touched">
+                 <p class="text-danger" >
+                     Bạn chưa đủ 18 tuổi
+                 </p>
+
         </div>
+                 <div class="divider-nospace"></div>
+
+        </div>
+
 
         <div class="space-input"></div>
         <div class="form-group password-field">
-          <label for="password">Full Name</label>
-          <input type="text"class="form-control" id="Full-name">
+          <label for="full-name">Full Name</label>
+          <input [(ngModel)]="fullName"  type="text"class="form-control" id="Full-name" name="full-name" required>
             <i class="password-toggle fas fa-eye-slash"></i>
             <div class="divider-nospace"></div>
         </div>
@@ -38,7 +89,7 @@
         <div class="space-input"></div>
         <div class="form-group password-field">
           <label for="password">Address</label>
-          <input type="text" class="form-control" id="Address">
+          <input  [(ngModel)]="address"  type="text" class="form-control" id="Address" name="address" required>
             <i class="password-toggle fas fa-eye-slash"></i>
             <div class="divider-nospace"></div>
         </div>
@@ -46,7 +97,7 @@
         <div class="form-group">
           <div class="form-check checkbox-text">
             <span style="display: flex">
-              <input type="checkbox" class="form-check-input" id="remember">
+              <input type="checkbox" class="form-check-input" name="checkbox" id="remember">
               <label for="remember" class="form-check-label text-start">
                 I agree with the terms
               </label>
@@ -55,12 +106,13 @@
           </div>
         </div>
 
-        <button type="button" class="login-button">Login</button>
+        <button (click)="register()" type="button" class="login-button">Login</button>
         <div class="divider"></div>
         <p class="text-center">Are you have account? <span> <a href="#" class="register-link">Login</a></span></p>
 
       </div>
     </div>
   </div>
+</form>
 </div>
 <app-footer></app-footer>

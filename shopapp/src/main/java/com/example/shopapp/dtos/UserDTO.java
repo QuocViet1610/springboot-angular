@@ -31,6 +31,7 @@ public class UserDTO {
     @NotBlank(message = "password can not is blank")
     private String password;
 
+    @JsonProperty("retype_password")
     private String retypePassword;
 
     @JsonProperty("date_of_Brith")
