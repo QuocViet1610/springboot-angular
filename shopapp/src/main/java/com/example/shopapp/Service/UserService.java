@@ -82,12 +82,12 @@ public class UserService implements IUserService {
         }
 
         //convert request to object authentication
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                numberPhone, password,
-                existingUser.get().getAuthorities()
-        );
-
-        authenticationManager.authenticate(authenticationToken);
+//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+//                numberPhone, password,
+//                existingUser.get().getAuthorities()
+//        );
+//
+//        authenticationManager.authenticate(authenticationToken);
 
 
         return jwtTokenUtil.generateToken(existingUser.get());

@@ -27,17 +27,12 @@
           <label for="password">Password</label>
           <input type="password" placeholder="Enter at least 3 characters" class="form-control" id="password"
           [(ngModel)]="password"
+          name="password"
           (focus)="loginForm.form.markAsTouched()"
           required
           >
           <div class="divider-nospace"></div>
             <i class="password-toggle fas fa-eye-slash"></i>
-            <div *ngIf="password.length < 3 && loginForm.form.touched">
-
-              <p  style="color: rgba(255, 255, 255, 0.192);">
-                  Mật khẩu phải có ít nhất 3 ký tự
-              </p>
-         </div>
 
         </div>
         <div class="form-group">
@@ -58,7 +53,7 @@
             <option value="">Admin</option>
           </select>
         </div>
-        <button type="button" class="login-button">Login</button>
+        <button type="button" class="login-button"  (click)="login()" >Login</button>
         <div class="divider"></div>
         <p class="text-center">Are you Register<span><a href="#" class="register-link">Are you Create Account</a></span></p>
 

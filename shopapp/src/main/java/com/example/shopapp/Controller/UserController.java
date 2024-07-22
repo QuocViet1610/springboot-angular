@@ -1,7 +1,10 @@
 package com.example.shopapp.Controller;
 
+import com.example.shopapp.Respone.LoginResponse;
 import com.example.shopapp.Service.imp.IUserService;
+import com.example.shopapp.Utils.MessageKeys;
 import com.example.shopapp.compoments.JwtTokenUtil;
+import com.example.shopapp.compoments.LocalizationUtils;
 import com.example.shopapp.dtos.requestDTO.UserLoginDTO;
 import com.example.shopapp.model.User;
 import jakarta.validation.Valid;
@@ -23,6 +26,7 @@ public class UserController {
 
     private final IUserService userService;
 
+    private final LocalizationUtils localizationUtils;
 
 
     @PostMapping("/register")
@@ -49,7 +53,10 @@ public class UserController {
     public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO userLoginDTO){
         try{
             String token = userService.Login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword());
-            return new ResponseEntity<>(token, HttpStatus.OK);
+            return ResponseEntity.ok(LoginResponse.builder()
+                    .message(localizationUtils.getLocalizedMessage(MessageKeys.LOGIN_SUCCESSFULLY))
+                    .token(token)
+                    .build());
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

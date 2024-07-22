@@ -10,8 +10,8 @@ import { LoginDTO } from '../dtos/user/login.dto';
 })
 export class UserService {
 
-  private apiRegister = `${environment.apiBaseUrl}/users/register`;
-  private apiUrl = `${environment.apiBaseUrl}/User/login`;
+  private apiRegister = `${environment.apiBaseUrl}/User/register`;
+  private apiLogin= `${environment.apiBaseUrl}/User/login`;
   private apiConfig = {
     headers: this.createHeaders(),
   }
@@ -28,6 +28,6 @@ export class UserService {
   }
 
   login(LoginDto:LoginDTO):Observable<any>{
-    return this.http.post(this.apiRegister, LoginDto,this.apiConfig)
+    return this.http.post(this.apiLogin, LoginDto,this.apiConfig)
   }
 }
