@@ -4,6 +4,8 @@ import com.example.shopapp.Repository.ProductRepository;
 import com.example.shopapp.Respone.ProductListRespone;
 import com.example.shopapp.Respone.ProductRespone;
 import com.example.shopapp.Service.imp.IProductService;
+import com.example.shopapp.Utils.MessageKeys;
+import com.example.shopapp.compoments.LocalizationUtils;
 import com.example.shopapp.dtos.ProductDTO;
 import com.example.shopapp.dtos.ProductImageDTO;
 import com.example.shopapp.exception.DataNotFoundException;
@@ -11,6 +13,7 @@ import com.example.shopapp.model.Product;
 import com.example.shopapp.model.ProductImage;
 import com.github.javafaker.Faker;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,13 +40,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.prefix}/products")
+@RequiredArgsConstructor
 public class ProductController {
 
     private final IProductService productService;
+    private final LocalizationUtils localizationUtils;
 
-    public ProductController(IProductService productService) {
-        this.productService = productService;
-    }
 
     @GetMapping("")
     public ResponseEntity<?> getAllCategory(
@@ -110,7 +112,8 @@ public class ProductController {
             List<ProductImage> productImage = new ArrayList<>();
 
             if(files.size() > ProductImage.MAX_IMAGE_PER_PRODUCT){
-               return new ResponseEntity<>("product must less than 5", HttpStatus.BAD_REQUEST);
+                return ResponseEntity.badRequest().body(localizationUtils
+                        .getLocalizedMessage(MessageKeys.UPLOAD_IMAGES_MAX_5));
             }
 
             for(MultipartFile file : files){
@@ -119,12 +122,15 @@ public class ProductController {
                     continue;
                 }
                 if(file.getSize() > 10 * 1024 * 1024){
-                    return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE).body("file is too large! Maxinum size is 10MB");
+                    return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE)
+                            .body(localizationUtils
+                                    .getLocalizedMessage(MessageKeys.UPLOAD_IMAGES_FILE_LARGE));
                 }
                 // kiểm tra loại file là file ảnh
                 String contentType = file.getContentType();
                 if(contentType == null || !contentType.startsWith("image/")){
-                    return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body("File must be an image");
+                    return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+                            .body(localizationUtils.getLocalizedMessage(MessageKeys.UPLOAD_IMAGES_FILE_MUST_BE_IMAGE));
                 }
                 String namefile = storeFile(file);
 

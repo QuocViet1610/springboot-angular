@@ -4,6 +4,8 @@ import com.example.shopapp.Repository.OrderDetailRepository;
 import com.example.shopapp.Respone.OrderDetailRespone;
 import com.example.shopapp.Respone.OrderRespone;
 import com.example.shopapp.Service.OrderDetailService;
+import com.example.shopapp.Utils.MessageKeys;
+import com.example.shopapp.compoments.LocalizationUtils;
 import com.example.shopapp.dtos.OrderDetailDTO;
 import com.example.shopapp.exception.DataNotFoundException;
 import com.example.shopapp.model.Order;
@@ -27,7 +29,7 @@ import java.util.stream.Collectors;
 public class OrderDetailController {
 
     private final OrderDetailService orderDetailService;
-
+    private final LocalizationUtils localizationUtils;
     @PostMapping("")
     public ResponseEntity<?> createOderDetail(@Valid @RequestBody OrderDetailDTO orderDetailDTO,  BindingResult result){
         try {
@@ -76,7 +78,9 @@ public class OrderDetailController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOder(@Valid @PathVariable("id") Long id){
             orderDetailService.deleleOrderDetail(id);
-        return new ResponseEntity<>("delete order Detail success  "+ id, HttpStatus.OK);
+        return ResponseEntity.ok()
+                .body(localizationUtils
+                        .getLocalizedMessage(MessageKeys.DELETE_ORDER_DETAIL_SUCCESSFULLY));
     }
 
     @PutMapping("/{id}")

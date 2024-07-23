@@ -1,6 +1,9 @@
 package com.example.shopapp.Controller;
 
+import com.example.shopapp.Respone.CategoryResponse;
 import com.example.shopapp.Service.CategoryService;
+import com.example.shopapp.Utils.MessageKeys;
+import com.example.shopapp.compoments.LocalizationUtils;
 import com.example.shopapp.dtos.CategoryDTO;
 import com.example.shopapp.model.Category;
 import jakarta.validation.Valid;
@@ -17,14 +20,13 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/categories")
 //@Validated
-
+@RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final LocalizationUtils localizationUtils;
 
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
+
 
 
     @GetMapping("")
@@ -38,14 +40,18 @@ public class CategoryController {
 
     @PostMapping("")
     public ResponseEntity<?> insertCategory(@RequestBody CategoryDTO categoryDTO, BindingResult result){
+        CategoryResponse categoryResponse = new CategoryResponse();
             if(result.hasErrors()){
                 List<String> ErroMessage = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 String errorMessage = String.join(", ", ErroMessage);
 
-                return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+                categoryResponse.setMessage(localizationUtils.getLocalizedMessage(MessageKeys.INSERT_CATEGORY_FAILED));
+                categoryResponse.setErrors(ErroMessage);
+                return ResponseEntity.badRequest().body(categoryResponse);
             }
-        categoryService.createCategory(categoryDTO);
-            return new ResponseEntity<>(String.format("save successfully ", categoryDTO), HttpStatus.OK);
+        Category category = categoryService.createCategory(categoryDTO);
+        categoryResponse.setCategory(category);
+        return ResponseEntity.ok(categoryResponse);
     }
 
     @PutMapping("/{id}")

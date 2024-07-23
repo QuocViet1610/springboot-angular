@@ -3,6 +3,8 @@ package com.example.shopapp.Controller;
 import com.example.shopapp.Repository.OrderRepository;
 import com.example.shopapp.Respone.OrderRespone;
 import com.example.shopapp.Service.imp.IOrderService;
+import com.example.shopapp.Utils.MessageKeys;
+import com.example.shopapp.compoments.LocalizationUtils;
 import com.example.shopapp.dtos.OrderDTO;
 import com.example.shopapp.exception.DataNotFoundException;
 import com.example.shopapp.model.Order;
@@ -23,6 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
+    private final LocalizationUtils localizationUtils;
     private final IOrderService orderService;
 
     @PostMapping("")
@@ -77,7 +80,7 @@ public class OrderController {
     public ResponseEntity<?> Delete(@PathVariable("id") Long id){
         // xoá mền
         orderService.deleteOder(id);
-        return new ResponseEntity<>("",HttpStatus.OK);
+        return ResponseEntity.ok(localizationUtils.getLocalizedMessage(MessageKeys.DELETE_ORDER_SUCCESSFULLY));
     }
 
 }

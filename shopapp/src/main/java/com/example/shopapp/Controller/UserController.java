@@ -1,6 +1,7 @@
 package com.example.shopapp.Controller;
 
 import com.example.shopapp.Respone.LoginResponse;
+import com.example.shopapp.Respone.RegisterResponse;
 import com.example.shopapp.Service.imp.IUserService;
 import com.example.shopapp.Utils.MessageKeys;
 import com.example.shopapp.compoments.JwtTokenUtil;
@@ -31,6 +32,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO userDTO, BindingResult result){
+        RegisterResponse registerResponse = new RegisterResponse();
         try{
             if(result.hasErrors()){
                 List<String> messageErrors= result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
@@ -38,11 +40,14 @@ public class UserController {
                 return new ResponseEntity<>(messageError, HttpStatus.BAD_REQUEST);
             }
             if(!userDTO.getPassword().equals(userDTO.getRetypePassword())){
-                return new ResponseEntity<>("Password does not match", HttpStatus.BAD_REQUEST);
+                registerResponse.setMessage(localizationUtils.getLocalizedMessage(MessageKeys.PASSWORD_NOT_MATCH));
+                return ResponseEntity.badRequest().body(registerResponse);
 
             }
             User user= userService.createUser(userDTO);
-            return new ResponseEntity<>(Map.of("message", "create user is success"), HttpStatus.OK);
+            registerResponse.setMessage(localizationUtils.getLocalizedMessage(MessageKeys.REGISTER_SUCCESSFULLY));
+            registerResponse.setUser(user);
+            return ResponseEntity.ok(registerResponse);
 
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
