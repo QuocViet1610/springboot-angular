@@ -1,9 +1,9 @@
   import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RegisterDTO } from '../dtos/user/resgiter.dto';
+import { RegisterDTO } from '../components/dtos/user/resgiter.dto';
 import { environment } from '../environment/environment.develop';
-import { LoginDTO } from '../dtos/user/login.dto';
+import { LoginDTO } from '../components/dtos/user/login.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class UserService {
 
 
   private createHeaders():HttpHeaders{
-    return new HttpHeaders({ 'Content-Type':'application/json'})
+    return new HttpHeaders({  'Content-Type': 'application/json',
+      'Accept-Language':'en'})
   }
 
   constructor(private http: HttpClient) {

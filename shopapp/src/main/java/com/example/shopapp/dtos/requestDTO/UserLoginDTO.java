@@ -19,4 +19,7 @@ public class UserLoginDTO {
     @NotBlank(message = "password can not is blank")
     private String password;
 
+    @JsonProperty("role_id")
+    private int RoleId;
+
 }

@@ -14,6 +14,7 @@ import com.example.shopapp.model.ProductImage;
 import com.github.javafaker.Faker;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.UrlResource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -167,6 +169,23 @@ public class ProductController {
         Files.copy(file.getInputStream(),destination, StandardCopyOption.REPLACE_EXISTING);
         return uniqueFileName;
     }
+
+    public ResponseEntity<?> viewImage(@PathVariable String nameImage){
+
+        try {
+            Path pathImage = Paths.get("uploads/"+nameImage);
+            UrlResource resource = new UrlResource(pathImage.toUri());
+            if (resource.exists()){
+                return ResponseEntity.ok().
+                        contentType(MediaType.MULTIPART_FORM_DATA).body(resource);
+            }else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (MalformedURLException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable int id ){

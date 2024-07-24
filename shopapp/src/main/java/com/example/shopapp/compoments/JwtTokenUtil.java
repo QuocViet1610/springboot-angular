@@ -75,7 +75,7 @@ public class JwtTokenUtil {
     //check expiration
     public boolean isTokenExpired(String token) {
         Date expirationDate = this.extractClaim(token, Claims::getExpiration);
-        return expirationDate.before(new Date());
+        return expirationDate.before(new Date());   
     }
 
     public String extractPhoneNumber(String token){
